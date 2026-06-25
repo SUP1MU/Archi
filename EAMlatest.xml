@@ -206,6 +206,69 @@
     <element identifier="id-d002778e80a143578d7d587702d138fc" xsi:type="ApplicationFunction">
       <name xml:lang="en">Send Push Notification</name>
     </element>
+    <element identifier="id-135787d36cb64d08884562d4bd878b63" xsi:type="ApplicationService">
+      <name xml:lang="en">Door Unlock Service</name>
+    </element>
+    <element identifier="id-9020a831dd4349b5a811275ee608f14a" xsi:type="ApplicationService">
+      <name xml:lang="en">Access Rights Assignment Service</name>
+    </element>
+    <element identifier="id-776612b79b3245b6803f046aa5baf619" xsi:type="ApplicationInterface">
+      <name xml:lang="en">Card Reader Interface</name>
+    </element>
+    <element identifier="id-8bd200ecd74340a89f645c0994b10c40" xsi:type="ApplicationInterface">
+      <name xml:lang="en">Receptionist Interface</name>
+    </element>
+    <element identifier="id-0a22428e491e4144862a32f3bc9891a7" xsi:type="ApplicationProcess">
+      <name xml:lang="en">Access Verification Process</name>
+    </element>
+    <element identifier="id-60ec48acc5cc4a02982bbcbaa0d567ea" xsi:type="ApplicationProcess">
+      <name xml:lang="en">Key Card Configuration Process</name>
+    </element>
+    <element identifier="id-507cd49a0d414638b44a931160412740" xsi:type="ApplicationProcess">
+      <name xml:lang="en">Energy Activation Process</name>
+    </element>
+    <element identifier="id-56814c6ec5734e85a75b27e22bfa49b2" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Read Card Data</name>
+    </element>
+    <element identifier="id-936b08ed74d0469b83c1477bb89868d7" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Authenticate Card</name>
+    </element>
+    <element identifier="id-beaecd4538e0432c9593d9947395270c" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Send Unlock Signal</name>
+    </element>
+    <element identifier="id-c7e306b6293542d18e146d3a64ed2a8e" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Maintain Lock</name>
+    </element>
+    <element identifier="id-1843a8715ebd410ea020ae3f1e79aaae" xsi:type="ApplicationEvent">
+      <name xml:lang="en">Authorization Confirmed</name>
+    </element>
+    <element identifier="id-b76d486a26804354aa285556616f9619" xsi:type="ApplicationEvent">
+      <name xml:lang="en">Authorization Denied</name>
+    </element>
+    <element identifier="id-79ccbc2a139047348c6f77b98c6b7d5f" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Create Card Record</name>
+    </element>
+    <element identifier="id-603de4489cb64d20abbc6e5fc5606ab8" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Assign Access Rights</name>
+    </element>
+    <element identifier="id-a93ffccd20ee490eaa7889cb4858a7be" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Encode Card Data</name>
+    </element>
+    <element identifier="id-7c1dab0bc7c44813afca72ab961c34fc" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Detect Card Insertion</name>
+    </element>
+    <element identifier="id-b94ba7b5db33430f9acec402261d9823" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Verify Card Validity</name>
+    </element>
+    <element identifier="id-5c196dd1ac2c439c8a52129047e2ce4f" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Activate Room Circuit</name>
+    </element>
+    <element identifier="id-34a533643da34ff4b1aec33921b26799" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Deactivate Room Circuit</name>
+    </element>
+    <element identifier="id-05d1f7a97919449b91e190e0a05b9762" xsi:type="ApplicationEvent">
+      <name xml:lang="en">Circuit Activated</name>
+    </element>
     <element identifier="id-d10ac3a5c1994db4bf423ae53ed5b166" xsi:type="Node">
       <name xml:lang="en">AWS Cloud Server</name>
       <documentation xml:lang="en">Central cloud server on Amazon Web Services hosting the Hotel Management System and storing guest data, reservations, and access rights.</documentation>
@@ -267,6 +330,12 @@
     </element>
     <element identifier="id-c574b26350b248acbd00b81d8c456226" xsi:type="AndJunction">
       <name xml:lang="en">Access Decision</name>
+    </element>
+    <element identifier="id-8a21510dd52c4f9c9cd3fc10bb292876" xsi:type="AndJunction">
+      <name xml:lang="en">Authorization Decision</name>
+    </element>
+    <element identifier="id-565ae4ec861e4b18b35576c6688f03f0" xsi:type="AndJunction">
+      <name xml:lang="en">Card Validity Decision</name>
     </element>
   </elements>
   <relationships>
@@ -359,6 +428,50 @@
     <relationship identifier="id-666e15cf038a446bbf806840af5ab68a" source="id-43d91a2ce66942238382b8195e31983f" target="id-bda1cacc32a14367acc8869f57086e3d" xsi:type="Serving" />
     <relationship identifier="id-20dd9501efcd4e3587b1b622679d64bf" source="id-8e5f37cfeaaf417a9d18e3f7d368d03d" target="id-24c83336cc4a4576b554eca11bc12dd8" xsi:type="Serving" />
     <relationship identifier="id-5b58a708448942d59efb1549447954da" source="id-979c4999c296463eb121cbe9eaa9e694" target="id-e56d620d91d24ce98c1b108a649e329c" xsi:type="Serving" />
+    <relationship identifier="id-1414254ac67e44fd8bcf9c2a9e924e54" source="id-0a22428e491e4144862a32f3bc9891a7" target="id-56814c6ec5734e85a75b27e22bfa49b2" xsi:type="Composition" />
+    <relationship identifier="id-2e0015fc67da4e88bf75ce832f657cf2" source="id-0a22428e491e4144862a32f3bc9891a7" target="id-936b08ed74d0469b83c1477bb89868d7" xsi:type="Composition" />
+    <relationship identifier="id-405f12dd79064829ab04594f288bb748" source="id-0a22428e491e4144862a32f3bc9891a7" target="id-3439441556d0415ba8b55899438b238d" xsi:type="Composition" />
+    <relationship identifier="id-ba13f3e8e9b54b7eb0a6f78f9c129ec9" source="id-0a22428e491e4144862a32f3bc9891a7" target="id-beaecd4538e0432c9593d9947395270c" xsi:type="Composition" />
+    <relationship identifier="id-093455369de54f1598633ec1f8159c40" source="id-0a22428e491e4144862a32f3bc9891a7" target="id-c7e306b6293542d18e146d3a64ed2a8e" xsi:type="Composition" />
+    <relationship identifier="id-6cec96ac0acd412a9e52b7bf2fbd9f39" source="id-60ec48acc5cc4a02982bbcbaa0d567ea" target="id-79ccbc2a139047348c6f77b98c6b7d5f" xsi:type="Composition" />
+    <relationship identifier="id-00de26abc8e94d22b4cdafd5db540ed9" source="id-60ec48acc5cc4a02982bbcbaa0d567ea" target="id-603de4489cb64d20abbc6e5fc5606ab8" xsi:type="Composition" />
+    <relationship identifier="id-ff5e746bf4544e40baa362948efea1e6" source="id-60ec48acc5cc4a02982bbcbaa0d567ea" target="id-a93ffccd20ee490eaa7889cb4858a7be" xsi:type="Composition" />
+    <relationship identifier="id-51f96503cd8e4f00a0d75140021dc69d" source="id-507cd49a0d414638b44a931160412740" target="id-7c1dab0bc7c44813afca72ab961c34fc" xsi:type="Composition" />
+    <relationship identifier="id-af340e9e21af4dde94b4c5e141f6c7ae" source="id-507cd49a0d414638b44a931160412740" target="id-b94ba7b5db33430f9acec402261d9823" xsi:type="Composition" />
+    <relationship identifier="id-a16622c6e1df4e4ab940e08e093a3ea2" source="id-507cd49a0d414638b44a931160412740" target="id-5c196dd1ac2c439c8a52129047e2ce4f" xsi:type="Composition" />
+    <relationship identifier="id-958a2e2cbb6c4676adc51ee015cd4056" source="id-507cd49a0d414638b44a931160412740" target="id-34a533643da34ff4b1aec33921b26799" xsi:type="Composition" />
+    <relationship identifier="id-41f0474b63b14f828d81076810838e63" source="id-56814c6ec5734e85a75b27e22bfa49b2" target="id-936b08ed74d0469b83c1477bb89868d7" xsi:type="Triggering" />
+    <relationship identifier="id-316e5c08881c4cf18b0bb1a640f01e45" source="id-936b08ed74d0469b83c1477bb89868d7" target="id-3439441556d0415ba8b55899438b238d" xsi:type="Triggering" />
+    <relationship identifier="id-dcac21386bb14ea6974e4692aa112321" source="id-3439441556d0415ba8b55899438b238d" target="id-8a21510dd52c4f9c9cd3fc10bb292876" xsi:type="Triggering" />
+    <relationship identifier="id-5dccb2b4fcb845ce8d95c3d9f82579ef" source="id-8a21510dd52c4f9c9cd3fc10bb292876" target="id-1843a8715ebd410ea020ae3f1e79aaae" xsi:type="Triggering" />
+    <relationship identifier="id-30a7702d7bfb44b7a6685e529646c6ed" source="id-8a21510dd52c4f9c9cd3fc10bb292876" target="id-b76d486a26804354aa285556616f9619" xsi:type="Triggering" />
+    <relationship identifier="id-85ffbc3c648a44048c7c46ca4458c2ae" source="id-1843a8715ebd410ea020ae3f1e79aaae" target="id-beaecd4538e0432c9593d9947395270c" xsi:type="Triggering" />
+    <relationship identifier="id-f2064a9e841442d6ac62860d677e328c" source="id-b76d486a26804354aa285556616f9619" target="id-c7e306b6293542d18e146d3a64ed2a8e" xsi:type="Triggering" />
+    <relationship identifier="id-f43546fcd8b04558ba6542a31b1af160" source="id-79ccbc2a139047348c6f77b98c6b7d5f" target="id-603de4489cb64d20abbc6e5fc5606ab8" xsi:type="Triggering" />
+    <relationship identifier="id-e58854e61205468895e952ff533da05c" source="id-603de4489cb64d20abbc6e5fc5606ab8" target="id-a93ffccd20ee490eaa7889cb4858a7be" xsi:type="Triggering" />
+    <relationship identifier="id-17c08aa618c144d59f85d15b4f594a89" source="id-7c1dab0bc7c44813afca72ab961c34fc" target="id-b94ba7b5db33430f9acec402261d9823" xsi:type="Triggering" />
+    <relationship identifier="id-1bf6f5cfc1324e35b36c4cb90232ff97" source="id-b94ba7b5db33430f9acec402261d9823" target="id-565ae4ec861e4b18b35576c6688f03f0" xsi:type="Triggering" />
+    <relationship identifier="id-85af70ec01d8493f8a557017df7ef876" source="id-565ae4ec861e4b18b35576c6688f03f0" target="id-5c196dd1ac2c439c8a52129047e2ce4f" xsi:type="Triggering" />
+    <relationship identifier="id-da27f917709145c1a89232a5720144eb" source="id-565ae4ec861e4b18b35576c6688f03f0" target="id-34a533643da34ff4b1aec33921b26799" xsi:type="Triggering" />
+    <relationship identifier="id-21f36b1711b642bfb272e19f7ce9be6b" source="id-5c196dd1ac2c439c8a52129047e2ce4f" target="id-05d1f7a97919449b91e190e0a05b9762" xsi:type="Triggering" />
+    <relationship identifier="id-e06a68b2f8204131a006cd6f92e90744" source="id-56814c6ec5734e85a75b27e22bfa49b2" target="id-161db4eead9941ba81e0dde8b05f8f42" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-b72010d6d57549fd97c0187b072833f4" source="id-936b08ed74d0469b83c1477bb89868d7" target="id-161db4eead9941ba81e0dde8b05f8f42" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-eee265c9948248baa52d8064cef463cb" source="id-603de4489cb64d20abbc6e5fc5606ab8" target="id-95fa9cda34b14b84b8ec1f311e15edb3" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-0555fd563a8f4eeba362025831849dea" source="id-a93ffccd20ee490eaa7889cb4858a7be" target="id-161db4eead9941ba81e0dde8b05f8f42" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-f329b194f610424fa7cc51bf0a920a13" source="id-5c196dd1ac2c439c8a52129047e2ce4f" target="id-6770f34a7efe49049a626f6b0796ff72" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-0f01637418b64abebe20400695d6096a" source="id-34a533643da34ff4b1aec33921b26799" target="id-6770f34a7efe49049a626f6b0796ff72" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-3adeda3aeb3048f886183f50134ff7c3" source="id-6b25986d097b40e39084e7791f298b9f" target="id-0a22428e491e4144862a32f3bc9891a7" xsi:type="Assignment" />
+    <relationship identifier="id-cfa1808f1b664335951f8f226af63a55" source="id-864ff71135f34424ab79ef07d7528e0b" target="id-60ec48acc5cc4a02982bbcbaa0d567ea" xsi:type="Assignment" />
+    <relationship identifier="id-89927f703cc54d57bb67211254b6cc3c" source="id-85707d8b4e5d4764b9f07a9a19895f3f" target="id-507cd49a0d414638b44a931160412740" xsi:type="Assignment" />
+    <relationship identifier="id-34bbe00bbbfc41a78429e583bf6ed913" source="id-0a22428e491e4144862a32f3bc9891a7" target="id-013ac29141a546f08a286516693f9a06" xsi:type="Realization" />
+    <relationship identifier="id-fb41e4b9a64e41f9a721431ba0c01aec" source="id-0a22428e491e4144862a32f3bc9891a7" target="id-135787d36cb64d08884562d4bd878b63" xsi:type="Realization" />
+    <relationship identifier="id-0446e02a8a4c49d0bad4b027960569ba" source="id-60ec48acc5cc4a02982bbcbaa0d567ea" target="id-979c4999c296463eb121cbe9eaa9e694" xsi:type="Realization" />
+    <relationship identifier="id-261c40cf7d744eddb554bcddf0e8aad6" source="id-60ec48acc5cc4a02982bbcbaa0d567ea" target="id-9020a831dd4349b5a811275ee608f14a" xsi:type="Realization" />
+    <relationship identifier="id-cc23a9ee89244aeca46d8c1a94dbe90b" source="id-507cd49a0d414638b44a931160412740" target="id-1ddf91ce404840c98ec398cb6fb2a6a3" xsi:type="Realization" />
+    <relationship identifier="id-ea77a8362d9d43169d1a194cb3b45e2f" source="id-6b25986d097b40e39084e7791f298b9f" target="id-776612b79b3245b6803f046aa5baf619" xsi:type="Composition" />
+    <relationship identifier="id-860ab42e1f924139bd8778597c1d5a3a" source="id-864ff71135f34424ab79ef07d7528e0b" target="id-8bd200ecd74340a89f645c0994b10c40" xsi:type="Composition" />
+    <relationship identifier="id-47117f7bd1b347c29ae39d962b41df2d" source="id-776612b79b3245b6803f046aa5baf619" target="id-013ac29141a546f08a286516693f9a06" xsi:type="Assignment" />
+    <relationship identifier="id-a378918ed0e043aa99718be7d22dc00e" source="id-8bd200ecd74340a89f645c0994b10c40" target="id-979c4999c296463eb121cbe9eaa9e694" xsi:type="Assignment" />
   </relationships>
   <organizations>
     <item>
@@ -421,6 +534,27 @@
       <item identifierRef="id-3439441556d0415ba8b55899438b238d" />
       <item identifierRef="id-ae97a27635f843b19586bc377744b0a1" />
       <item identifierRef="id-d002778e80a143578d7d587702d138fc" />
+      <item identifierRef="id-135787d36cb64d08884562d4bd878b63" />
+      <item identifierRef="id-9020a831dd4349b5a811275ee608f14a" />
+      <item identifierRef="id-776612b79b3245b6803f046aa5baf619" />
+      <item identifierRef="id-8bd200ecd74340a89f645c0994b10c40" />
+      <item identifierRef="id-0a22428e491e4144862a32f3bc9891a7" />
+      <item identifierRef="id-60ec48acc5cc4a02982bbcbaa0d567ea" />
+      <item identifierRef="id-507cd49a0d414638b44a931160412740" />
+      <item identifierRef="id-56814c6ec5734e85a75b27e22bfa49b2" />
+      <item identifierRef="id-936b08ed74d0469b83c1477bb89868d7" />
+      <item identifierRef="id-beaecd4538e0432c9593d9947395270c" />
+      <item identifierRef="id-c7e306b6293542d18e146d3a64ed2a8e" />
+      <item identifierRef="id-1843a8715ebd410ea020ae3f1e79aaae" />
+      <item identifierRef="id-b76d486a26804354aa285556616f9619" />
+      <item identifierRef="id-79ccbc2a139047348c6f77b98c6b7d5f" />
+      <item identifierRef="id-603de4489cb64d20abbc6e5fc5606ab8" />
+      <item identifierRef="id-a93ffccd20ee490eaa7889cb4858a7be" />
+      <item identifierRef="id-7c1dab0bc7c44813afca72ab961c34fc" />
+      <item identifierRef="id-b94ba7b5db33430f9acec402261d9823" />
+      <item identifierRef="id-5c196dd1ac2c439c8a52129047e2ce4f" />
+      <item identifierRef="id-34a533643da34ff4b1aec33921b26799" />
+      <item identifierRef="id-05d1f7a97919449b91e190e0a05b9762" />
     </item>
     <item>
       <label xml:lang="en">Technology &amp; Physical</label>
@@ -444,6 +578,8 @@
     <item>
       <label xml:lang="en">Other</label>
       <item identifierRef="id-c574b26350b248acbd00b81d8c456226" />
+      <item identifierRef="id-8a21510dd52c4f9c9cd3fc10bb292876" />
+      <item identifierRef="id-565ae4ec861e4b18b35576c6688f03f0" />
     </item>
     <item>
       <label xml:lang="en">Relations</label>
@@ -536,6 +672,50 @@
       <item identifierRef="id-666e15cf038a446bbf806840af5ab68a" />
       <item identifierRef="id-20dd9501efcd4e3587b1b622679d64bf" />
       <item identifierRef="id-5b58a708448942d59efb1549447954da" />
+      <item identifierRef="id-1414254ac67e44fd8bcf9c2a9e924e54" />
+      <item identifierRef="id-2e0015fc67da4e88bf75ce832f657cf2" />
+      <item identifierRef="id-405f12dd79064829ab04594f288bb748" />
+      <item identifierRef="id-ba13f3e8e9b54b7eb0a6f78f9c129ec9" />
+      <item identifierRef="id-093455369de54f1598633ec1f8159c40" />
+      <item identifierRef="id-6cec96ac0acd412a9e52b7bf2fbd9f39" />
+      <item identifierRef="id-00de26abc8e94d22b4cdafd5db540ed9" />
+      <item identifierRef="id-ff5e746bf4544e40baa362948efea1e6" />
+      <item identifierRef="id-51f96503cd8e4f00a0d75140021dc69d" />
+      <item identifierRef="id-af340e9e21af4dde94b4c5e141f6c7ae" />
+      <item identifierRef="id-a16622c6e1df4e4ab940e08e093a3ea2" />
+      <item identifierRef="id-958a2e2cbb6c4676adc51ee015cd4056" />
+      <item identifierRef="id-41f0474b63b14f828d81076810838e63" />
+      <item identifierRef="id-316e5c08881c4cf18b0bb1a640f01e45" />
+      <item identifierRef="id-dcac21386bb14ea6974e4692aa112321" />
+      <item identifierRef="id-5dccb2b4fcb845ce8d95c3d9f82579ef" />
+      <item identifierRef="id-30a7702d7bfb44b7a6685e529646c6ed" />
+      <item identifierRef="id-85ffbc3c648a44048c7c46ca4458c2ae" />
+      <item identifierRef="id-f2064a9e841442d6ac62860d677e328c" />
+      <item identifierRef="id-f43546fcd8b04558ba6542a31b1af160" />
+      <item identifierRef="id-e58854e61205468895e952ff533da05c" />
+      <item identifierRef="id-17c08aa618c144d59f85d15b4f594a89" />
+      <item identifierRef="id-1bf6f5cfc1324e35b36c4cb90232ff97" />
+      <item identifierRef="id-85af70ec01d8493f8a557017df7ef876" />
+      <item identifierRef="id-da27f917709145c1a89232a5720144eb" />
+      <item identifierRef="id-21f36b1711b642bfb272e19f7ce9be6b" />
+      <item identifierRef="id-e06a68b2f8204131a006cd6f92e90744" />
+      <item identifierRef="id-b72010d6d57549fd97c0187b072833f4" />
+      <item identifierRef="id-eee265c9948248baa52d8064cef463cb" />
+      <item identifierRef="id-0555fd563a8f4eeba362025831849dea" />
+      <item identifierRef="id-f329b194f610424fa7cc51bf0a920a13" />
+      <item identifierRef="id-0f01637418b64abebe20400695d6096a" />
+      <item identifierRef="id-3adeda3aeb3048f886183f50134ff7c3" />
+      <item identifierRef="id-cfa1808f1b664335951f8f226af63a55" />
+      <item identifierRef="id-89927f703cc54d57bb67211254b6cc3c" />
+      <item identifierRef="id-34bbe00bbbfc41a78429e583bf6ed913" />
+      <item identifierRef="id-fb41e4b9a64e41f9a721431ba0c01aec" />
+      <item identifierRef="id-0446e02a8a4c49d0bad4b027960569ba" />
+      <item identifierRef="id-261c40cf7d744eddb554bcddf0e8aad6" />
+      <item identifierRef="id-cc23a9ee89244aeca46d8c1a94dbe90b" />
+      <item identifierRef="id-ea77a8362d9d43169d1a194cb3b45e2f" />
+      <item identifierRef="id-860ab42e1f924139bd8778597c1d5a3a" />
+      <item identifierRef="id-47117f7bd1b347c29ae39d962b41df2d" />
+      <item identifierRef="id-a378918ed0e043aa99718be7d22dc00e" />
     </item>
     <item>
       <label xml:lang="en">Views</label>
@@ -543,6 +723,7 @@
       <item identifierRef="id-762b9f8cbd82403d8cd9e3eb31abaf14" />
       <item identifierRef="id-26fe1377fa9e4eab82866c4f782e11ac" />
       <item identifierRef="id-e3af64ddffa042b8bed684993a9d45a4" />
+      <item identifierRef="id-6af023881f8d437d94e5b90ced182e69" />
     </item>
   </organizations>
   <views>
@@ -3536,6 +3717,848 @@
           <bendpoint x="895" y="739" />
           <bendpoint x="895" y="485" />
           <bendpoint x="876" y="485" />
+        </connection>
+      </view>
+      <view identifier="id-6af023881f8d437d94e5b90ced182e69" xsi:type="Diagram" viewpoint="Application Cooperation">
+        <name xml:lang="en">Room Access — Application Layer (Detailed)</name>
+        <node identifier="id-eb65f47bf591449f86853c6beed20877" elementRef="id-013ac29141a546f08a286516693f9a06" xsi:type="Element" x="74" y="290" w="240" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-e03e81a505f140918d23f7338f1e5b72" elementRef="id-135787d36cb64d08884562d4bd878b63" xsi:type="Element" x="334" y="290" w="200" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-3e9be127f21548d1be18314587ae2276" elementRef="id-979c4999c296463eb121cbe9eaa9e694" xsi:type="Element" x="814" y="290" w="250" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-3e48abe30ca14106a28a511719c6172e" elementRef="id-9020a831dd4349b5a811275ee608f14a" xsi:type="Element" x="1084" y="290" w="250" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-0602080b90984758b9e15963340840c5" elementRef="id-1ddf91ce404840c98ec398cb6fb2a6a3" xsi:type="Element" x="1534" y="290" w="220" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-6a039a57754645c296a493a446fe39b2" elementRef="id-0a22428e491e4144862a32f3bc9891a7" xsi:type="Element" x="74" y="380" w="680" h="420">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-500b1c600f0b456c9cc62d0fd026a240" elementRef="id-56814c6ec5734e85a75b27e22bfa49b2" xsi:type="Element" x="94" y="440" w="160" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-e6be2e881b424b17aa7939ea012130b2" elementRef="id-936b08ed74d0469b83c1477bb89868d7" xsi:type="Element" x="94" y="520" w="160" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-93138aa2dad942fb82b24f4a0237d0a6" elementRef="id-3439441556d0415ba8b55899438b238d" xsi:type="Element" x="94" y="600" w="160" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-0ec351328cb84f829372269f9cacfdf8" elementRef="id-8a21510dd52c4f9c9cd3fc10bb292876" xsi:type="Element" x="304" y="615" w="30" h="30">
+            <style>
+              <fillColor r="0" g="0" b="0" a="100" />
+              <lineColor r="0" g="0" b="0" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-0efd18674352421889dc96795729952b" elementRef="id-1843a8715ebd410ea020ae3f1e79aaae" xsi:type="Element" x="394" y="530" w="170" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-7363472325644b1eb50191f720e32176" elementRef="id-b76d486a26804354aa285556616f9619" xsi:type="Element" x="394" y="680" w="170" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-5041de65bac94fce860a95b3ebe434cb" elementRef="id-beaecd4538e0432c9593d9947395270c" xsi:type="Element" x="594" y="530" w="150" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-5d88d490e8b245a2ac90fdc409b2ef63" elementRef="id-c7e306b6293542d18e146d3a64ed2a8e" xsi:type="Element" x="594" y="680" w="150" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-3ef0a30e31f0489b8e9581285856837e" elementRef="id-60ec48acc5cc4a02982bbcbaa0d567ea" xsi:type="Element" x="814" y="380" w="620" h="150">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-280b7f1278304730926e3bfba07ecf1e" elementRef="id-79ccbc2a139047348c6f77b98c6b7d5f" xsi:type="Element" x="834" y="435" w="170" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-4d3f581d03b047b9b2c7a7c4f7afcd04" elementRef="id-603de4489cb64d20abbc6e5fc5606ab8" xsi:type="Element" x="1034" y="435" w="170" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-fba9a2d9dc604827b58a60ad1a63e52a" elementRef="id-a93ffccd20ee490eaa7889cb4858a7be" xsi:type="Element" x="1234" y="435" w="170" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-2a077c26c60047d68bf13c57999d9ab6" elementRef="id-507cd49a0d414638b44a931160412740" xsi:type="Element" x="814" y="570" w="820" h="230">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-26dd6fcd1364449dae99d5c7ade22b2b" elementRef="id-7c1dab0bc7c44813afca72ab961c34fc" xsi:type="Element" x="834" y="660" w="160" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-bea7a114cbf0483db4a9c4e1240da2e9" elementRef="id-b94ba7b5db33430f9acec402261d9823" xsi:type="Element" x="1014" y="660" w="160" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-6ac3587df95d428db649e7f83268b266" elementRef="id-565ae4ec861e4b18b35576c6688f03f0" xsi:type="Element" x="1204" y="670" w="30" h="30">
+            <style>
+              <fillColor r="0" g="0" b="0" a="100" />
+              <lineColor r="0" g="0" b="0" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-b9ef52e7a2054ccbacfe8ac436034e53" elementRef="id-5c196dd1ac2c439c8a52129047e2ce4f" xsi:type="Element" x="1274" y="610" w="170" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-ad3c3220cb824a64a5fda23f0f335fd7" elementRef="id-34a533643da34ff4b1aec33921b26799" xsi:type="Element" x="1274" y="720" w="170" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-41b56f0a6fad4f1bb7776251e1ba951a" elementRef="id-05d1f7a97919449b91e190e0a05b9762" xsi:type="Element" x="1474" y="610" w="150" h="50">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Sans" size="9">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-b22b517015f24193a3fb3cee7f3c2b29" elementRef="id-6b25986d097b40e39084e7791f298b9f" xsi:type="Element" x="34" y="870" w="300" h="80">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-adb0a1317d964e2499c8f4ccb4b1643e" elementRef="id-864ff71135f34424ab79ef07d7528e0b" xsi:type="Element" x="814" y="870" w="300" h="80">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-b4959ff9c4624f32b86b8d2effd97591" elementRef="id-85707d8b4e5d4764b9f07a9a19895f3f" xsi:type="Element" x="1334" y="870" w="300" h="80">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-a011270478bf4a82bd5ce9f08b580825" elementRef="id-776612b79b3245b6803f046aa5baf619" xsi:type="Element" x="394" y="880" w="150" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-88b8595d8e634663a9981b8bbe953291" elementRef="id-8bd200ecd74340a89f645c0994b10c40" xsi:type="Element" x="1134" y="880" w="160" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-d8c47fee5f9147139310435a07be40d7" elementRef="id-161db4eead9941ba81e0dde8b05f8f42" xsi:type="Element" x="74" y="990" w="170" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-15c447e9b6d54585af2e0563d9d6ba3b" elementRef="id-95fa9cda34b14b84b8ec1f311e15edb3" xsi:type="Element" x="274" y="990" w="190" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-a6ccfb4704ab460597286298cb6e9bb5" elementRef="id-6770f34a7efe49049a626f6b0796ff72" xsi:type="Element" x="1334" y="990" w="170" h="50">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-29845438738f42f0a051ae52f98ddbda" xsi:type="Label" x="0" y="0" w="900" h="230">
+          <label xml:lang="en">⬆  MERGE → ROOM ACCESS · BUSINESS LAYER  (teammate's diagram)
+
+Wire each Application Service UP to the business process (Serving →):
+  • Access Verification Service        →  'Verify Access Authorization'
+  • Door Unlock Service                →  'Grant Room Access'
+  • Key Card Configuration Service     →  'Issue Key Card' / 'Configure Access Rights'
+  • Access Rights Assignment Service   →  'Configure Access Rights'
+  • Energy Activation Service          →  'Grant Room Access' (room electricity)
+
+Data alignment (Realization ↑):
+  • Access Rights Record  → realizes → 'Access Rights Profile' (BusinessObject)
+  • Card Credential       → realizes → 'Key Card' (BusinessObject)
+
+RULE: ApplicationService —Serving→ BusinessProcess  |  DataObject —Realization→ BusinessObject</label>
+          <style>
+            <fillColor r="255" g="224" b="178" a="100" />
+            <lineColor r="230" g="81" b="0" a="100" />
+            <font>
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-c5542a5540744d8eb9b2d54c80c4aa25" xsi:type="Label" x="0" y="1060" w="960" h="190">
+          <label xml:lang="en">⬇  MERGE → ROOM ACCESS · TECHNOLOGY LAYER  (teammate's diagram)
+
+Wire each Technology element DOWN to my application elements:
+  • 'Door System Software Runtime' (SystemSoftware) on 'Door Control Node'  → realizes →  Door System Software
+  • 'Door Card Reader' (Device) via 'RFID Communication' (Network)          → serves   →  Card Reader Interface
+  • 'AWS Cloud Server' (Node)                                               → realizes →  Hotel Management System
+  • 'Energy Saver Interface' (Device, card switch)                          → serves   →  Energy Management System
+  • 'Reception PC &amp; Terminal' (Device)                                      → serves   →  Receptionist Interface
+
+RULE: Node/SystemSoftware —Realization→ ApplicationComponent  |  Device —Serving→ ApplicationComponent/Interface</label>
+          <style>
+            <fillColor r="255" g="224" b="178" a="100" />
+            <lineColor r="230" g="81" b="0" a="100" />
+            <font>
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-8b2e5b22bcf144139cde782aa98f6bb3" xsi:type="Label" x="1674" y="390" w="470" h="330">
+          <label xml:lang="en">↔  MERGE → DAILY BRIEFING · APPLICATION LAYER  (teammate's diagram)
+
+SHARED COMPONENT — do NOT duplicate on merge:
+  • 'Hotel Management System' in THIS view is the SAME element as the
+    'Hotel Management System' in the Daily Briefing app layer.
+       – here it performs:  Key Card Configuration Process
+       – there it performs: Briefing Report Generation (Compile Briefing Data…)
+    → Keep ONE Hotel Management System; attach both processes to it.
+
+SHARED DATA (central HMS / AWS store):
+  • Guest profiles &amp; reservations are the same source the briefing reads;
+    access rights are assigned from that data at check-in.
+
+NOTE: the PDF describes NO direct service call between the two domains —
+they are parallel capabilities running on the one shared HMS platform.
+(So the only connector is component identity, not a relationship line.)</label>
+          <style>
+            <fillColor r="225" g="190" b="231" a="100" />
+            <lineColor r="106" g="27" b="154" a="100" />
+            <font>
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-eabbace779454a84849199da088e28e9" relationshipRef="id-11ed931d51214a82973cff95dae5c6b8" xsi:type="Relationship" source="id-eb65f47bf591449f86853c6beed20877" target="id-d8c47fee5f9147139310435a07be40d7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="117" y="341" />
+          <bendpoint x="117" y="365" />
+          <bendpoint x="0" y="365" />
+          <bendpoint x="0" y="980" />
+          <bendpoint x="159" y="980" />
+        </connection>
+        <connection identifier="id-a4be22ab76c644cbb3ed79089b78c493" relationshipRef="id-5d12350bf21e44448c761dbd5ced34c5" xsi:type="Relationship" source="id-3e9be127f21548d1be18314587ae2276" target="id-eb65f47bf591449f86853c6beed20877">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="939" y="240" />
+          <bendpoint x="322" y="240" />
+          <bendpoint x="322" y="315" />
+          <bendpoint x="315" y="315" />
+        </connection>
+        <connection identifier="id-98287c4ecc5c4fc7aa98b573aab849cf" relationshipRef="id-99acadb00ee44f15bb665d9de7803490" xsi:type="Relationship" source="id-3e9be127f21548d1be18314587ae2276" target="id-15c447e9b6d54585af2e0563d9d6ba3b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="813" y="315" />
+          <bendpoint x="813" y="989" />
+          <bendpoint x="399" y="989" />
+        </connection>
+        <connection identifier="id-4b77834c5943406faf04a22aa75b47a3" relationshipRef="id-5affcfcfd01540faa6d08ab886ea9541" xsi:type="Relationship" source="id-0602080b90984758b9e15963340840c5" target="id-a6ccfb4704ab460597286298cb6e9bb5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1644" y="1015" />
+          <bendpoint x="1505" y="1015" />
+        </connection>
+        <connection identifier="id-cec7d69cfd73422e8fdc427609d68a4b" relationshipRef="id-34bbe00bbbfc41a78429e583bf6ed913" xsi:type="Relationship" source="id-6a039a57754645c296a493a446fe39b2" target="id-eb65f47bf591449f86853c6beed20877">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="302" y="379" />
+          <bendpoint x="302" y="348" />
+          <bendpoint x="271" y="348" />
+          <bendpoint x="271" y="341" />
+        </connection>
+        <connection identifier="id-69529dddcadc4bff9b7f8af6b2150301" relationshipRef="id-fb41e4b9a64e41f9a721431ba0c01aec" xsi:type="Relationship" source="id-6a039a57754645c296a493a446fe39b2" target="id-e03e81a505f140918d23f7338f1e5b72">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="526" y="379" />
+          <bendpoint x="526" y="350" />
+          <bendpoint x="434" y="350" />
+        </connection>
+        <connection identifier="id-95d16294ebc04b23a9e75ebbc63a5d58" relationshipRef="id-41f0474b63b14f828d81076810838e63" xsi:type="Relationship" source="id-500b1c600f0b456c9cc62d0fd026a240" target="id-e6be2e881b424b17aa7939ea012130b2">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="149" y="491" />
+          <bendpoint x="149" y="512" />
+          <bendpoint x="174" y="512" />
+          <bendpoint x="174" y="519" />
+        </connection>
+        <connection identifier="id-6e184a4cc71043a09fe13e463f6edb2d" relationshipRef="id-e06a68b2f8204131a006cd6f92e90744" xsi:type="Relationship" source="id-500b1c600f0b456c9cc62d0fd026a240" target="id-d8c47fee5f9147139310435a07be40d7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="93" y="465" />
+          <bendpoint x="65" y="465" />
+          <bendpoint x="65" y="1015" />
+          <bendpoint x="73" y="1015" />
+        </connection>
+        <connection identifier="id-b7ab738fba0e40b988bea80ef03c836d" relationshipRef="id-316e5c08881c4cf18b0bb1a640f01e45" xsi:type="Relationship" source="id-e6be2e881b424b17aa7939ea012130b2" target="id-93138aa2dad942fb82b24f4a0237d0a6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="149" y="571" />
+          <bendpoint x="149" y="592" />
+          <bendpoint x="199" y="592" />
+          <bendpoint x="199" y="599" />
+        </connection>
+        <connection identifier="id-2545aeb5094247d28a5e03e3cf02c9b8" relationshipRef="id-b72010d6d57549fd97c0187b072833f4" xsi:type="Relationship" source="id-e6be2e881b424b17aa7939ea012130b2" target="id-d8c47fee5f9147139310435a07be40d7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="255" y="545" />
+          <bendpoint x="262" y="545" />
+          <bendpoint x="262" y="605" />
+          <bendpoint x="574" y="605" />
+          <bendpoint x="574" y="1050" />
+          <bendpoint x="159" y="1050" />
+        </connection>
+        <connection identifier="id-b6106ff88d884420a3952056ce6bc280" relationshipRef="id-344fb80c7a5a4e6383c1a9d65b182deb" xsi:type="Relationship" source="id-93138aa2dad942fb82b24f4a0237d0a6" target="id-eb65f47bf591449f86853c6beed20877">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="93" y="625" />
+          <bendpoint x="86" y="625" />
+          <bendpoint x="86" y="350" />
+          <bendpoint x="194" y="350" />
+        </connection>
+        <connection identifier="id-cef3740adb6248f6a5962791e2b541df" relationshipRef="id-a41b6c67b2c84503875e675360f40a8a" xsi:type="Relationship" source="id-93138aa2dad942fb82b24f4a0237d0a6" target="id-15c447e9b6d54585af2e0563d9d6ba3b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="174" y="651" />
+          <bendpoint x="174" y="658" />
+          <bendpoint x="369" y="658" />
+          <bendpoint x="369" y="989" />
+        </connection>
+        <connection identifier="id-8cfa9ad67ddb4b96a50e6960cd99bc84" relationshipRef="id-dcac21386bb14ea6974e4692aa112321" xsi:type="Relationship" source="id-93138aa2dad942fb82b24f4a0237d0a6" target="id-0ec351328cb84f829372269f9cacfdf8">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="255" y="625" />
+          <bendpoint x="303" y="625" />
+        </connection>
+        <connection identifier="id-4ee61562059a46a9a71bc86878a4f523" relationshipRef="id-5dccb2b4fcb845ce8d95c3d9f82579ef" xsi:type="Relationship" source="id-0ec351328cb84f829372269f9cacfdf8" target="id-0efd18674352421889dc96795729952b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="335" y="630" />
+          <bendpoint x="479" y="630" />
+          <bendpoint x="479" y="581" />
+        </connection>
+        <connection identifier="id-f8e9d1966c284327b8cb925b1622e3ac" relationshipRef="id-30a7702d7bfb44b7a6685e529646c6ed" xsi:type="Relationship" source="id-0ec351328cb84f829372269f9cacfdf8" target="id-7363472325644b1eb50191f720e32176">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="335" y="630" />
+          <bendpoint x="479" y="630" />
+          <bendpoint x="479" y="679" />
+        </connection>
+        <connection identifier="id-5cd02f67aa0f47f79a4c52c8f99c6525" relationshipRef="id-85ffbc3c648a44048c7c46ca4458c2ae" xsi:type="Relationship" source="id-0efd18674352421889dc96795729952b" target="id-5041de65bac94fce860a95b3ebe434cb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="565" y="555" />
+          <bendpoint x="593" y="555" />
+        </connection>
+        <connection identifier="id-9aec703560184695b7c04060db9d6e7d" relationshipRef="id-f2064a9e841442d6ac62860d677e328c" xsi:type="Relationship" source="id-7363472325644b1eb50191f720e32176" target="id-5d88d490e8b245a2ac90fdc409b2ef63">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="565" y="705" />
+          <bendpoint x="593" y="705" />
+        </connection>
+        <connection identifier="id-7f990b45d51c46c98388b1063a97023b" relationshipRef="id-0446e02a8a4c49d0bad4b027960569ba" xsi:type="Relationship" source="id-3ef0a30e31f0489b8e9581285856837e" target="id-3e9be127f21548d1be18314587ae2276">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1022" y="379" />
+          <bendpoint x="1065" y="379" />
+          <bendpoint x="1065" y="315" />
+        </connection>
+        <connection identifier="id-fa46bb26ee82470ab3d5e56a754c68cb" relationshipRef="id-261c40cf7d744eddb554bcddf0e8aad6" xsi:type="Relationship" source="id-3ef0a30e31f0489b8e9581285856837e" target="id-3e48abe30ca14106a28a511719c6172e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1226" y="379" />
+          <bendpoint x="1226" y="348" />
+          <bendpoint x="1209" y="348" />
+          <bendpoint x="1209" y="341" />
+        </connection>
+        <connection identifier="id-fb26736122b84b15a8bc6f344d07557e" relationshipRef="id-f43546fcd8b04558ba6542a31b1af160" xsi:type="Relationship" source="id-280b7f1278304730926e3bfba07ecf1e" target="id-4d3f581d03b047b9b2c7a7c4f7afcd04">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1005" y="460" />
+          <bendpoint x="1033" y="460" />
+        </connection>
+        <connection identifier="id-afbcea7d24254d359c1c8a59da9a5b39" relationshipRef="id-e58854e61205468895e952ff533da05c" xsi:type="Relationship" source="id-4d3f581d03b047b9b2c7a7c4f7afcd04" target="id-fba9a2d9dc604827b58a60ad1a63e52a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1205" y="460" />
+          <bendpoint x="1233" y="460" />
+        </connection>
+        <connection identifier="id-a4b30c28a31e45b998c7c6989021838e" relationshipRef="id-eee265c9948248baa52d8064cef463cb" xsi:type="Relationship" source="id-4d3f581d03b047b9b2c7a7c4f7afcd04" target="id-15c447e9b6d54585af2e0563d9d6ba3b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1119" y="486" />
+          <bendpoint x="1764" y="486" />
+          <bendpoint x="1764" y="1041" />
+          <bendpoint x="369" y="1041" />
+        </connection>
+        <connection identifier="id-887c4f7246704de9a3c424d5e7a0fe52" relationshipRef="id-0555fd563a8f4eeba362025831849dea" xsi:type="Relationship" source="id-fba9a2d9dc604827b58a60ad1a63e52a" target="id-d8c47fee5f9147139310435a07be40d7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1405" y="460" />
+          <bendpoint x="1670" y="460" />
+          <bendpoint x="1670" y="960" />
+          <bendpoint x="186" y="960" />
+          <bendpoint x="186" y="989" />
+        </connection>
+        <connection identifier="id-9fcbc31d0da944b99319208abf5559f0" relationshipRef="id-cc23a9ee89244aeca46d8c1a94dbe90b" xsi:type="Relationship" source="id-2a077c26c60047d68bf13c57999d9ab6" target="id-0602080b90984758b9e15963340840c5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1635" y="685" />
+          <bendpoint x="1697" y="685" />
+          <bendpoint x="1697" y="341" />
+        </connection>
+        <connection identifier="id-ccf448955fe14144b4aae34052103309" relationshipRef="id-17c08aa618c144d59f85d15b4f594a89" xsi:type="Relationship" source="id-26dd6fcd1364449dae99d5c7ade22b2b" target="id-bea7a114cbf0483db4a9c4e1240da2e9">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="995" y="685" />
+          <bendpoint x="1013" y="685" />
+        </connection>
+        <connection identifier="id-00f93622be124a2fbc24f3dbf9fe7966" relationshipRef="id-1bf6f5cfc1324e35b36c4cb90232ff97" xsi:type="Relationship" source="id-bea7a114cbf0483db4a9c4e1240da2e9" target="id-6ac3587df95d428db649e7f83268b266">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1175" y="685" />
+          <bendpoint x="1203" y="685" />
+        </connection>
+        <connection identifier="id-b6f55ac4543048dda6b96b2aa9433a30" relationshipRef="id-85af70ec01d8493f8a557017df7ef876" xsi:type="Relationship" source="id-6ac3587df95d428db649e7f83268b266" target="id-b9ef52e7a2054ccbacfe8ac436034e53">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1235" y="685" />
+          <bendpoint x="1386" y="685" />
+          <bendpoint x="1386" y="661" />
+        </connection>
+        <connection identifier="id-976cc11b15564e69aa15e93ef2a3a11b" relationshipRef="id-da27f917709145c1a89232a5720144eb" xsi:type="Relationship" source="id-6ac3587df95d428db649e7f83268b266" target="id-ad3c3220cb824a64a5fda23f0f335fd7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1235" y="685" />
+          <bendpoint x="1386" y="685" />
+          <bendpoint x="1386" y="719" />
+        </connection>
+        <connection identifier="id-2b68c90cb7aa4ccaaf04e501c23912cf" relationshipRef="id-21f36b1711b642bfb272e19f7ce9be6b" xsi:type="Relationship" source="id-b9ef52e7a2054ccbacfe8ac436034e53" target="id-41b56f0a6fad4f1bb7776251e1ba951a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1445" y="635" />
+          <bendpoint x="1473" y="635" />
+        </connection>
+        <connection identifier="id-3f2f86d6f27e49af806faf3b36e4a424" relationshipRef="id-f329b194f610424fa7cc51bf0a920a13" xsi:type="Relationship" source="id-b9ef52e7a2054ccbacfe8ac436034e53" target="id-a6ccfb4704ab460597286298cb6e9bb5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1264" y="635" />
+          <bendpoint x="1264" y="870" />
+          <bendpoint x="1324" y="870" />
+          <bendpoint x="1324" y="1015" />
+        </connection>
+        <connection identifier="id-cd8bed9833324421a9481ef7d703e382" relationshipRef="id-0f01637418b64abebe20400695d6096a" xsi:type="Relationship" source="id-ad3c3220cb824a64a5fda23f0f335fd7" target="id-a6ccfb4704ab460597286298cb6e9bb5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1359" y="771" />
+          <bendpoint x="1333" y="771" />
+          <bendpoint x="1333" y="1015" />
+        </connection>
+        <connection identifier="id-738b4e414d2d40e98d6b1f6864cc2e56" relationshipRef="id-0e4b1447ba074560b6a6e11b6c04f190" xsi:type="Relationship" source="id-b22b517015f24193a3fb3cee7f3c2b29" target="id-eb65f47bf591449f86853c6beed20877">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="33" y="910" />
+          <bendpoint x="57" y="349" />
+          <bendpoint x="232" y="349" />
+          <bendpoint x="232" y="341" />
+        </connection>
+        <connection identifier="id-2499873bdf874c2a94af07c96d0e3b3c" relationshipRef="id-3adeda3aeb3048f886183f50134ff7c3" xsi:type="Relationship" source="id-b22b517015f24193a3fb3cee7f3c2b29" target="id-6a039a57754645c296a493a446fe39b2">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="272" y="869" />
+          <bendpoint x="272" y="818" />
+          <bendpoint x="414" y="818" />
+          <bendpoint x="414" y="801" />
+        </connection>
+        <connection identifier="id-48b5bf6186bb42c8999e2c131f3395d1" relationshipRef="id-66c9961f551b48a8a5a4420c0e177884" xsi:type="Relationship" source="id-b22b517015f24193a3fb3cee7f3c2b29" target="id-93138aa2dad942fb82b24f4a0237d0a6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="176" y="869" />
+          <bendpoint x="176" y="660" />
+          <bendpoint x="174" y="660" />
+        </connection>
+        <connection identifier="id-5fbc84daa24b43cea427b44da65a7169" relationshipRef="id-ea77a8362d9d43169d1a194cb3b45e2f" xsi:type="Relationship" source="id-b22b517015f24193a3fb3cee7f3c2b29" target="id-a011270478bf4a82bd5ce9f08b580825">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="375" y="910" />
+          <bendpoint x="393" y="910" />
+        </connection>
+        <connection identifier="id-a39df2130d9a452d82eef3888bd565fe" relationshipRef="id-b607e3e397c04ecd8b7be7aa076d7fe7" xsi:type="Relationship" source="id-adb0a1317d964e2499c8f4ccb4b1643e" target="id-3e9be127f21548d1be18314587ae2276">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="804" y="910" />
+          <bendpoint x="804" y="360" />
+          <bendpoint x="939" y="360" />
+        </connection>
+        <connection identifier="id-822bbe89661245ddbdf32ba208e11d5d" relationshipRef="id-cfa1808f1b664335951f8f226af63a55" xsi:type="Relationship" source="id-adb0a1317d964e2499c8f4ccb4b1643e" target="id-3ef0a30e31f0489b8e9581285856837e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="804" y="910" />
+          <bendpoint x="796" y="910" />
+          <bendpoint x="796" y="547" />
+          <bendpoint x="1226" y="547" />
+          <bendpoint x="1226" y="531" />
+        </connection>
+        <connection identifier="id-6763782f81054c3ba742f21001cfa0be" relationshipRef="id-860ab42e1f924139bd8778597c1d5a3a" xsi:type="Relationship" source="id-adb0a1317d964e2499c8f4ccb4b1643e" target="id-88b8595d8e634663a9981b8bbe953291">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1115" y="910" />
+          <bendpoint x="1133" y="910" />
+        </connection>
+        <connection identifier="id-2242fe5ef3f745969338b89ff3cee860" relationshipRef="id-81e3c6c5c603473ea23e858d53afbbf0" xsi:type="Relationship" source="id-b4959ff9c4624f32b86b8d2effd97591" target="id-0602080b90984758b9e15963340840c5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1645" y="910" />
+          <bendpoint x="1645" y="341" />
+        </connection>
+        <connection identifier="id-e6b284afe0254dc4bba68a5480f90371" relationshipRef="id-89927f703cc54d57bb67211254b6cc3c" xsi:type="Relationship" source="id-b4959ff9c4624f32b86b8d2effd97591" target="id-2a077c26c60047d68bf13c57999d9ab6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1484" y="869" />
+          <bendpoint x="1484" y="801" />
+          <bendpoint x="1224" y="801" />
+        </connection>
+        <connection identifier="id-20cc0ccf74154d15ac4ea90eae2df6eb" relationshipRef="id-47117f7bd1b347c29ae39d962b41df2d" xsi:type="Relationship" source="id-a011270478bf4a82bd5ce9f08b580825" target="id-eb65f47bf591449f86853c6beed20877">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="469" y="879" />
+          <bendpoint x="469" y="810" />
+          <bendpoint x="14" y="810" />
+          <bendpoint x="14" y="357" />
+          <bendpoint x="156" y="357" />
+          <bendpoint x="156" y="341" />
+        </connection>
+        <connection identifier="id-2bbe16cb3cb94965af1ee735c62beb9a" relationshipRef="id-a378918ed0e043aa99718be7d22dc00e" xsi:type="Relationship" source="id-88b8595d8e634663a9981b8bbe953291" target="id-3e9be127f21548d1be18314587ae2276">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Sans" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1214" y="879" />
+          <bendpoint x="1214" y="835" />
+          <bendpoint x="765" y="835" />
+          <bendpoint x="765" y="315" />
         </connection>
       </view>
     </diagrams>

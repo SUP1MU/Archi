@@ -14,7 +14,7 @@ Case source: <https://archihotel-eam.web.app/>
 
 | File | Description |
 |------|-------------|
-| [`ArchiHotel.archimate`](ArchiHotel.archimate) | The Archi model (open in [Archi](https://www.archimatetool.com/) 5.7+). Contains all 4 views below. |
+| [`EAMlatest.xml`](EAMlatest.xml) | The ArchiMate model in Open Exchange format (import into [Archi](https://www.archimatetool.com/) 5.7+). Contains all 5 views below. |
 | [`Focus2_RoomAccess_DailyBriefing.md`](Focus2_RoomAccess_DailyBriefing.md) | Case-material extraction, roles/inputs/outputs breakdown, ArchiMate element inventory, and the presentation script. |
 | [`SourceTexts_Focus2.md`](SourceTexts_Focus2.md) | Verbatim source quotes by domain & layer, with PDF page / website locators. |
 | [`RoomAccess_ApplicationLayer.md`](RoomAccess_ApplicationLayer.md) | Detailed Room Access application layer: every element + connector, source-grounding audit, and cross-layer/cross-domain merge instructions. |
@@ -62,5 +62,5 @@ Deep-dive into just the Room Access application layer (Door System Software, Hot
 ## How to open
 
 1. Install [Archi](https://www.archimatetool.com/) (5.7 or newer).
-2. **File → Open** → `ArchiHotel.archimate`.
+2. **File → Import → Model from Open Exchange File** → `EAMlatest.xml`.
 3. Expand **Views** in the model tree and double-click any view.
