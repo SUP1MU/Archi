@@ -16,6 +16,8 @@ Case source: <https://archihotel-eam.web.app/>
 |------|-------------|
 | [`ArchiHotel.archimate`](ArchiHotel.archimate) | The Archi model (open in [Archi](https://www.archimatetool.com/) 5.7+). Contains all 4 views below. |
 | [`Focus2_RoomAccess_DailyBriefing.md`](Focus2_RoomAccess_DailyBriefing.md) | Case-material extraction, roles/inputs/outputs breakdown, ArchiMate element inventory, and the presentation script. |
+| [`SourceTexts_Focus2.md`](SourceTexts_Focus2.md) | Verbatim source quotes by domain & layer, with PDF page / website locators. |
+| [`RoomAccess_ApplicationLayer.md`](RoomAccess_ApplicationLayer.md) | Detailed Room Access application layer: every element + connector, source-grounding audit, and cross-layer/cross-domain merge instructions. |
 | [`images/`](images/) | PNG exports of each view. |
 
 ## Views
@@ -41,6 +43,11 @@ generate briefing report → conduct meeting → broadcast coordination to staff
 Original single-canvas view of both sub-domains, kept for reference.
 
 ![Focus 2 flat](images/Focus2_flat_backup.png)
+
+### 5. Room Access — Application Layer (Detailed)
+Deep-dive into just the Room Access application layer (Door System Software, Hotel Management System, Energy Management System), each decomposed into functions, junction branches, outcome events and data objects. Includes coloured **merge boxes** showing how it connects up to the Business layer, down to the Technology layer, and across to the Daily Briefing application layer (shared HMS). See [`RoomAccess_ApplicationLayer.md`](RoomAccess_ApplicationLayer.md) for the full element + connector catalogue.
+
+![Room Access Application Layer Detailed](images/RoomAccess_ApplicationLayer_Detailed.png)
 
 ---
 
