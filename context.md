@@ -50,14 +50,14 @@ See `SourceTexts_Focus2.md` for verbatim quotes mapped to elements with page num
 - **VPN gotcha:** user is on a VPN (`tun0`, DNS `10.53.53.53`) that blocks github.com; proxy at `127.0.0.1:3128`. Terminal git works (uses `http_proxy`). coArchi needed proxy lines added to `~/Archi/Archi.ini` (done). If coArchi can't reach GitHub, disconnect VPN or use the proxy.
 - **Model file in repo = `EAMlatest.xml`** (Open Exchange). It is the single source of truth but may **lag the in-memory model** — re-export to refresh. (Old `ArchiHotel.archimate` + duplicate XMLs were removed.)
 
-## 5. Current model state (in Archi memory; ~125 elements, ~174 connections)
+## 5. Current model state (in Archi memory; **121 elements, 186 relationships, 6 views**)
 **6 views:**
 1. **Abstract EA — ArchiHotel Enterprise Overview** — whole enterprise, light detail, colored bands.
 2. **Focus 2 — Room Access & Daily Briefing** — original flat backup.
 3. **Room Access — Layered (TUM style)** — 3 layers, nested.
 4. **Daily Briefing — Layered (TUM style)** — 3 layers, nested.
-5. **Room Access — Application Layer (Detailed)** — standalone app layer; has 3 **merge boxes** (⬆ Business, ⬇ Technology, ↔ Daily Briefing/shared HMS). Documented in `RoomAccess_ApplicationLayer.md`.
-6. **Focus 2 — Integrated Detailed Model (Room Access + Daily Briefing)** — the big one: 8 groups = 6 layer-topic boxes (3×2) + **SHARED PLATFORM (HMS)** + **SHARED INFRASTRUCTURE (AWS)**. All 6 layers detailed. Very dense (~536 crossings) — readable only zoomed in. PNG: `images/Focus2_Integrated_Detailed.png`.
+5. **Room Access — Application Layer (Detailed)** — standalone app layer; has 3 **merge boxes** (⬆ Business, ⬇ Technology, ↔ Daily Briefing/shared HMS). Documented in `RoomAccess_ApplicationLayer.md`. **CLEANED (latest):** removed `Authenticate Card`, `Maintain Lock`, `Circuit Activated` + ~9 redundant relationships; crossings 92→36. See §7 for the pattern. (These deletions are model-global, so view 6 lost them too.)
+6. **Focus 2 — Integrated Detailed Model (Room Access + Daily Briefing)** — the big one: 8 groups = 6 layer-topic boxes (3×2) + **SHARED PLATFORM (HMS)** + **SHARED INFRASTRUCTURE (AWS)**. All 6 layers detailed. Very dense (~520+ crossings) — readable only zoomed in. PNG: `images/Focus2_Integrated_Detailed.png`.
 
 Detail style: components decomposed into **Application/Business Processes** containing **Functions** (chevron), **Junctions** for "only if" branches, **Events** for outcomes, **Data Objects** (read/write Access), **Interfaces** (Card Reader, Receptionist, Mobile App). Tech layer has Nodes/Devices/SystemSoftware/Networks/Artifacts.
 
@@ -75,7 +75,8 @@ Detail style: components decomposed into **Application/Business Processes** cont
 ## 7. Conventions & decisions (agreed with user)
 - **Direct actor → process Assignment, NO role bridge** (both TUM exemplars confirm). The abandoned "Card Holder" role was deleted.
 - **TUM house style:** layer alignment (yellow/blue/green), nesting, realization spine, triggering flow + junctions, business/app events, app/tech functions (chevron).
-- **Grounding tags** in docs: `[NAMED]` (verbatim in PDF), `[DERIVED]` (modeled from described behaviour), `[INFERRED+]` (weakest — currently only **`Authenticate Card`**, which the user may delete).
+- **Grounding tags** in docs: `[NAMED]` (verbatim in PDF), `[DERIVED]` (modeled from described behaviour), `[INFERRED+]` (weakest). **As of latest cleanup there are NO `[INFERRED+]` elements left** — `Authenticate Card` (the only one) was deleted.
+- **App-layer cleanup pattern (applied to Room Access app layer, latest):** every component is consistently **`component ●→ process` (one Assignment) → `process ─△▷ services` (Realization) → `process ◆ functions` (Composition) → `functions ┄▶ data` (Access)**. Removed: redundant component→service / component→function assignments, redundant function→service realization, and semantically-wrong service→data accesses (services don't read data, functions do). **Deny = default** (no "Maintain Lock" action; `Authorization Denied` is a terminal event). Energy junction branches directly to `Activate`/`Deactivate Room Circuit` (no redundant `Circuit Activated` event). User confirmed: no source-grounded meaning lost — the drop from 92→36 crossings was duplicate/incorrect lines, and the 3 removed elements were un-sourced or still represented by neighbours.
 - **Merge model (6-person):** add colored note-boxes saying which of our elements connects to which teammate element + the relationship rule. **Room Access ↔ Daily Briefing link = shared `Hotel Management System` (component identity, NOT a service call)**; shared `AWS Cloud Server` at tech.
 - Business-layer names from teammate (for merge boxes): `Request Room Access → Verify Access Authorization → Grant Room Access`; `Issue Key Card → Configure Access Rights → Encode Key Card`; objects `Access Rights Profile`, `Key Card`; event `Room Access Requested`.
 - **Out-of-scope verbatim items deliberately excluded** (other domains/general infra): guest-room telephone + private telephone network, hotel website, Transfer Management System, WeWash/laundry machines (only laundry-room *access* is in scope), open costs/pricing/room availability.
@@ -85,18 +86,19 @@ Detail style: components decomposed into **Application/Business Processes** cont
 - `README.md`, `LICENSE`
 - `Focus2_RoomAccess_DailyBriefing.md` — case material, roles/inputs/outputs, presentation script (3+7+2 min)
 - `SourceTexts_Focus2.md` — verbatim quotes by topic×layer with PDF page / website locators
-- `RoomAccess_ApplicationLayer.md` — detailed app-layer element+connector catalogue, source-grounding audit (§4), and **§6 "Modeling Story"** (sentence→box→arrow walkthrough)
+- `RoomAccess_ApplicationLayer.md` — detailed app-layer element+connector catalogue, source-grounding audit (§4, now "no [INFERRED+] left"), and **§6 "Modeling Story"** (sentence→box→arrow walkthrough). **Fully reconciled to the cleaned model** (matches the deletions in §5/§7).
 - `context.md` — this file
 - `ArchiHotel_ The Genesis Files.pdf`, `CampusIT-detailed.pdf`, `campusIT-Abstract.pdf`, `business layer- room access.pdf`
 - `images/`: `Abstract_EA_ArchiHotel.png`, `RoomAccess_Layered_TUM.png`, `DailyBriefing_Layered_TUM.png`, `Focus2_flat_backup.png`, `RoomAccess_ApplicationLayer_Detailed.png`, `Focus2_Integrated_Detailed.png`
 
 ## 9. Open items / next steps
-- [ ] **Re-export Open Exchange XML → overwrite `EAMlatest.xml`** to capture the latest in-memory work (integrated view, extra tech components, verbatim additions: Assign Drivers for Transfers, Reception Phone, Guest Profile, Room Status), then commit/push.
-- [ ] **Push the `RoomAccess_ApplicationLayer.md` §6 update + `context.md`** (doc-only; no Archi save needed) — not yet pushed at time of writing.
-- [ ] Decide on **`Authenticate Card`** ([INFERRED+]) — keep or delete.
+- [ ] **Re-export Open Exchange XML → overwrite `EAMlatest.xml`** to capture the latest in-memory work (integrated view, extra tech components, verbatim additions: Assign Drivers for Transfers, Reception Phone, Guest Profile, Room Status, **and the app-layer cleanup deletions**), then commit/push. **`EAMlatest.xml` is now several edits stale.**
+- [ ] **Push the `RoomAccess_ApplicationLayer.md` updates + `context.md`** (doc-only; no Archi save needed) — not yet pushed at time of writing.
+- [x] ~~Decide on `Authenticate Card`~~ — **DONE: deleted** (along with `Maintain Lock`, `Circuit Activated`) in the app-layer cleanup.
 - [ ] Offered but not done: **generate the 2-view split** (Room Access 3-layer / Daily Briefing 3-layer) for a more readable submission than the dense integrated view.
 - [ ] Integrated view has **2 cosmetic element overlaps** + high crossing count (inherent to single-canvas choice).
-- [ ] Benign **"Visual Nesting" advisories** on nested events (Authorization Confirmed/Denied, Circuit Activated) — expected, leave or un-nest.
+- [ ] Benign **"Visual Nesting" advisories** on remaining nested events (Authorization Confirmed/Denied) — expected, leave or un-nest. (`Circuit Activated` advisory is gone — element deleted.)
+- [ ] Optional: if a presentation wants explicit outcome boxes back (a visible "stays locked" / "circuit on"), they can be re-added as `[DERIVED]` extras — user currently prefers the cleaner version.
 
 ## 10. How to resume in a new chat (quick start)
 1. Confirm Archi is open with the model + MCP server running (`curl http://127.0.0.1:18090/mcp` → 200).
