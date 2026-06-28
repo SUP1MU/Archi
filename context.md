@@ -40,6 +40,7 @@ See `SourceTexts_Focus2.md` for verbatim quotes mapped to elements with page num
               d=json.loads(line[6:])
               return d.get("error") or json.loads(d["result"]["content"][0]["text"])
   ```
+- **⚠️ ACTIVE-MODEL GOTCHA (critical):** the MCP operates on **whatever model is ACTIVE/selected in Archi**. If the user opens another model (e.g. a teammate's reference like "Manju"), the MCP silently points at *that* model — you'll create elements in the wrong place. **ALWAYS run `get-model-info` first and confirm it reads `ArchiHotel Enterprise Architecture` with the expected element/view counts before any write.** (If it says `(new model)` / 0 elements / a different name, the wrong model is active — ask the user to click ArchiHotel's root node in the Models tree. Closing the other model may leave a blank model active; re-init the session and re-check.)
 - **Saving:** there is **no MCP save tool**. Edits live in Archi memory until the user presses **Ctrl+S** (writes to the coArchi grafico repo now) OR **File → Export → Model to Open Exchange File (XML)**.
 - **/tmp helper files** (`M.json` id-map, `vo_all.json` view-object ids, `intg_view.json`, etc.) are **ephemeral** — a new session must re-inventory via `search-elements` + `get-views`.
 
@@ -50,14 +51,15 @@ See `SourceTexts_Focus2.md` for verbatim quotes mapped to elements with page num
 - **VPN gotcha:** user is on a VPN (`tun0`, DNS `10.53.53.53`) that blocks github.com; proxy at `127.0.0.1:3128`. Terminal git works (uses `http_proxy`). coArchi needed proxy lines added to `~/Archi/Archi.ini` (done). If coArchi can't reach GitHub, disconnect VPN or use the proxy.
 - **Model file in repo = `EAMlatest.xml`** (Open Exchange). It is the single source of truth but may **lag the in-memory model** — re-export to refresh. (Old `ArchiHotel.archimate` + duplicate XMLs were removed.)
 
-## 5. Current model state (in Archi memory; **121 elements, 186 relationships, 6 views**)
-**6 views:**
+## 5. Current model state (in Archi memory; **124 elements, 194 relationships, 7 views**)
+**7 views:**
 1. **Abstract EA — ArchiHotel Enterprise Overview** — whole enterprise, light detail, colored bands.
 2. **Focus 2 — Room Access & Daily Briefing** — original flat backup.
 3. **Room Access — Layered (TUM style)** — 3 layers, nested.
 4. **Daily Briefing — Layered (TUM style)** — 3 layers, nested.
 5. **Room Access — Application Layer (Detailed)** — standalone app layer; has 3 **merge boxes** (⬆ Business, ⬇ Technology, ↔ Daily Briefing/shared HMS). Documented in `RoomAccess_ApplicationLayer.md`. **CLEANED (latest):** removed `Authenticate Card`, `Maintain Lock`, `Circuit Activated` + ~9 redundant relationships; crossings 92→36. See §7 for the pattern. (These deletions are model-global, so view 6 lost them too.)
-6. **Focus 2 — Integrated Detailed Model (Room Access + Daily Briefing)** — the big one: 8 groups = 6 layer-topic boxes (3×2) + **SHARED PLATFORM (HMS)** + **SHARED INFRASTRUCTURE (AWS)**. All 6 layers detailed. Very dense (~520+ crossings) — readable only zoomed in. PNG: `images/Focus2_Integrated_Detailed.png`.
+6. **Focus 2 — Integrated Detailed Model (Room Access + Daily Briefing)** — the big one: 8 groups = 6 layer-topic boxes (3×2) + **SHARED PLATFORM (HMS)** + **SHARED INFRASTRUCTURE (AWS)**. All 6 layers detailed. Very dense (~600 crossings) — readable only zoomed in. PNG: `images/Focus2_Integrated_Detailed.png`. (Re-verified: its Room Access app portion is semantically identical to view 5 — same elements/relationships, composition shown by nesting.)
+7. **Room Access — Application Layer (Abstract)** — NEW. Manju-style capability map: **Component ●→ Function ─△▷ Service(s)** for the 3 components, + interfaces. **No** steps/junctions/events/data. Uses **3 new `ApplicationFunction` capability elements** (`Access Verification`, `Key Card Configuration`, `Energy Activation`) — these are *parallel* to view 5's 3 `ApplicationProcess` containers (the "Mirror Manju" choice). Layout excellent, 4 crossings. PNG: `images/RoomAccess_ApplicationLayer_Abstract.png`.
 
 Detail style: components decomposed into **Application/Business Processes** containing **Functions** (chevron), **Junctions** for "only if" branches, **Events** for outcomes, **Data Objects** (read/write Access), **Interfaces** (Card Reader, Receptionist, Mobile App). Tech layer has Nodes/Devices/SystemSoftware/Networks/Artifacts.
 
@@ -89,11 +91,13 @@ Detail style: components decomposed into **Application/Business Processes** cont
 - `RoomAccess_ApplicationLayer.md` — detailed app-layer element+connector catalogue, source-grounding audit (§4, now "no [INFERRED+] left"), and **§6 "Modeling Story"** (sentence→box→arrow walkthrough). **Fully reconciled to the cleaned model** (matches the deletions in §5/§7).
 - `context.md` — this file
 - `ArchiHotel_ The Genesis Files.pdf`, `CampusIT-detailed.pdf`, `campusIT-Abstract.pdf`, `business layer- room access.pdf`
-- `images/`: `Abstract_EA_ArchiHotel.png`, `RoomAccess_Layered_TUM.png`, `DailyBriefing_Layered_TUM.png`, `Focus2_flat_backup.png`, `RoomAccess_ApplicationLayer_Detailed.png`, `Focus2_Integrated_Detailed.png`
+- `images/`: `Abstract_EA_ArchiHotel.png`, `RoomAccess_Layered_TUM.png`, `DailyBriefing_Layered_TUM.png`, `Focus2_flat_backup.png`, `RoomAccess_ApplicationLayer_Detailed.png`, **`RoomAccess_ApplicationLayer_Abstract.png` (NEW)**, `Focus2_Integrated_Detailed.png`
+- **Reference (not in repo):** teammate "Manju" model — a separate `.archimate` with `Manju - Abstract Model` + `Manju - Detailed Model` **business-layer** views. Style learned: abstract = capability map `Component/Role → Service ← Function ◆ key Processes` (+ objects/events); detailed = same Functions/Services but more process steps. It was the template for view 7. (User has since closed it.)
 
 ## 9. Open items / next steps
-- [ ] **Re-export Open Exchange XML → overwrite `EAMlatest.xml`** to capture the latest in-memory work (integrated view, extra tech components, verbatim additions: Assign Drivers for Transfers, Reception Phone, Guest Profile, Room Status, **and the app-layer cleanup deletions**), then commit/push. **`EAMlatest.xml` is now several edits stale.**
-- [ ] **Push the `RoomAccess_ApplicationLayer.md` updates + `context.md`** (doc-only; no Archi save needed) — not yet pushed at time of writing.
+- [ ] **Re-export Open Exchange XML → overwrite `EAMlatest.xml`** to capture ALL latest in-memory work (integrated view, extra tech, verbatim additions, the app-layer cleanup deletions, **and the new abstract view + its 3 capability functions**), then commit/push. **`EAMlatest.xml` is now MANY edits stale.**
+- [ ] **Push doc + image updates** (`RoomAccess_ApplicationLayer.md`, `context.md`, `images/RoomAccess_ApplicationLayer_Abstract.png`, refreshed `Focus2_Integrated_Detailed.png` + `RoomAccess_ApplicationLayer_Detailed.png`) — not yet pushed at time of writing.
+- [ ] Optional unify: the abstract view (#7) uses 3 `ApplicationFunction` capabilities that are **parallel** to view 5's 3 `ApplicationProcess` containers (the "Mirror Manju" choice). If a grader wants one consistent convention, either rename/merge or accept both (abstract=Function, detailed=Process).
 - [x] ~~Decide on `Authenticate Card`~~ — **DONE: deleted** (along with `Maintain Lock`, `Circuit Activated`) in the app-layer cleanup.
 - [ ] Offered but not done: **generate the 2-view split** (Room Access 3-layer / Daily Briefing 3-layer) for a more readable submission than the dense integrated view.
 - [ ] Integrated view has **2 cosmetic element overlaps** + high crossing count (inherent to single-canvas choice).
