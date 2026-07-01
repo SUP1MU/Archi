@@ -1,0 +1,168 @@
+Now I have the full picture. 80 elements is nearly as many as the Detailed (117) — a good abstract should be 30–35. Here are the exact steps.
+
+---
+Step-by-step: how to slim Focus 2 - Abstract Model
+
+Target: ~32 elements, 3 layers, one service per sub-domain per layer. Remove from view (not from model) unless noted.
+
+---
+STEP 1 — Business layer: cut from 31 → ~12
+
+Remove from view (keep in model):
+
+┌───────────────────────────────────────────┬─────────────────────────────────────────────────────────┐
+│                  Remove                   │                           Why                           │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Card Inserted into Switch (BusinessEvent) │ Low-level trigger — implementation detail               │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Check-In Completed (BusinessEvent)        │ Same                                                    │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Entering Guest Room (BusinessEvent)       │ Same                                                    │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Entering Laundry Room (BusinessEvent)     │ Same                                                    │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Leaving the room (BusinessEvent)          │ Same                                                    │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Energy Management (BusinessFunction)      │ Redundant — Energy Saving Service already says this     │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Key Card Management (BusinessFunction)    │ Redundant — Key Card Issuance Service covers it         │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Room Access Control (BusinessFunction)    │ Redundant — Room Access Service covers it               │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Access Rights Profile (BusinessObject)    │ Detail — belongs in Detailed                            │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Electrical Circuit (BusinessObject)       │ Tech-level concept, wrong layer for abstract            │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Physical room (BusinessObject)            │ Too granular                                            │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Activate Room Power (BusinessProcess)     │ Implementation step — abstract shows services not steps │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Deactivate Room Power (BusinessProcess)   │ Same                                                    │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Housekeeping Staff (BusinessRole)         │ Covered by Hotel Staff at abstract level                │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Client (BusinessActor)                    │ Duplicate of Guest at abstract level                    │
+├───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ Empty Product                             │ Junk — delete from model too                            │
+└───────────────────────────────────────────┴─────────────────────────────────────────────────────────┘
+
+Keep (12 elements):
+- Roles: Guest, Receptionist, Hotel Manager, Head of Concierge, Head of Housekeeping, Hotel Staff
+- Processes: Issue Key Card, Request Room Access, Daily Briefing
+- Services: Key Card Issuance Service, Room Access Service, Daily Operational Briefing Service, Energy Saving Service
+- Object: Key Card, Briefing Report (one object each to anchor the domains)
+
+---
+STEP 2 — Application layer: cut from 16 → ~8
+
+Remove from view:
+
+┌───────────────────────────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                        Remove                         │                                                         Why                                                          │
+├───────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Card Reader Interface, Receptionist Interface         │ Interfaces are Detailed-level; abstract shows components → services                                                  │
+│ (ApplicationInterface)                                │                                                                                                                      │
+├───────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Briefing Report Data (DataObject)                     │ Data objects are Detailed-level                                                                                      │
+├───────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Door Access Service                                   │ Rename conflict with Access Verification Service in Detailed — rename this to Access Verification Service to stay    │
+│                                                       │ consistent, or remove and keep the function enough                                                                   │
+└───────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Keep (8 elements):
+- Components: Hotel Management System, Door System Software, Energy Management System, Staff Portal
+- Functions: Access Verification, Key Card Configuration, Energy Activation (these are the abstract capability summary)
+- Services: Briefing Report Generation Service, Key Card Configuration Service, Energy Activation Service, Operational Dashboard Service, Push Notification Service
+
+That's 4 components + 3 functions + 5 services = 12. Still abstract because it shows what each component does without the process/function decomposition of the Detailed.
+
+---
+STEP 3 — Technology layer: cut from 29 → ~10
+
+This is where most of the bloat is. An abstract tech layer shows infrastructure — not every device.
+
+Remove from view:
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────┐
+│                                                          Remove                                                          │                        Why                        │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Hotel Website (SystemSoftware)                                                                                           │ Out of scope                                      │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Transfer Management System (SystemSoftware)                                                                              │ Out of scope                                      │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Door Card Encoder (Device)                                                                                               │ Detailed-level device                             │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Door Lock Actuator (Device)                                                                                              │ Detailed-level device                             │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Guest Room Telephone (Device)                                                                                            │ Out of scope                                      │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Payment Terminal (Device)                                                                                                │ Out of scope                                      │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Reception Phone (Device)                                                                                                 │ Out of scope                                      │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Reception PC (Device)                                                                                                    │ Detailed-level; Wi-Fi association implies         │
+│                                                                                                                          │ connectivity                                      │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ All 7 TechnologyServices (Access Verification Service, Briefing Report Generation Service, Data Synchronization Service, │ Services at tech level are Detailed; abstract     │
+│  Energy Control Service, Key Configuration Service, Operational Dashboard Service, Push Notification Service)            │ tech shows infrastructure, not services           │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ Cloud Data Link, RFID Link (Path)                                                                                        │ Paths are Detailed routing; the Networks already  │
+│                                                                                                                          │ imply this                                        │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────┘
+
+Keep (10 elements):
+- Nodes: AWS Cloud Infrastructure, Local hotel server
+- SystemSoftware: Hotel Management System, Door System Software, Energy Management System, Staff Portal Application
+- Networks: Hotel Wi-Fi Network, RFID Communication Network
+- Devices: Key Card, Door Card Reader, Energy Saver Interface, Android Smartphone
+- Equipment: Room Electrical Circuit
+
+---
+STEP 4 — Fix the Junction cluster
+
+The Junction (the AND-junction for Manager + Concierge + Housekeeping → Daily Briefing) is valid but carries 9 relationships including some Specialization and Composition links to events you're removing. Once you remove the 5 events in Step 1:
+
+- Delete: the Junction → Daily Briefing Assignment, the Composition to the events, the Specialization from events
+- Replace with: direct Assignment from Hotel Manager, Head of Concierge, Head of Housekeeping → Daily Briefing (skip the junction — it's a detail)
+
+---
+STEP 5 — Fix the one naming inconsistency
+
+Door Access Service (abstract) vs Access Verification Service (detailed) — same concept, different name. Rename the abstract one to Access Verification Service to match. Do it in Archi with right-click → Edit → rename.
+
+---
+STEP 6 — Connections to keep / add after cleanup
+
+After removals, the abstract should have these cross-layer seams (you likely have most already):
+
+App → Business (Serving + Realization):
+- Key Card Configuration Service → Serving → Issue Key Card
+- Access Verification Service → Serving → Request Room Access
+- Briefing Report Generation Service → Serving → Daily Briefing
+- Key Card Configuration Service → Realization → Key Card Issuance Service
+- Access Verification Service → Realization → Room Access Service
+- Briefing Report Generation Service → Realization → Daily Operational Briefing Service
+- Energy Activation Service → Realization → Energy Saving Service
+
+Tech → App (Realization):
+- Hotel Management System (SystemSoftware) → Realization → Hotel Management System (Component)
+- Door System Software (SystemSoftware) → Realization → Door System Software (Component)
+- Energy Management System (SystemSoftware) → Realization → Energy Management System (Component)
+- Staff Portal Application → Realization → Staff Portal
+
+---
+Summary count
+
+┌─────────────┬────────┬───────┐
+│    Layer    │ Before │ After │
+├─────────────┼────────┼───────┤
+│ Business    │ 31     │ ~12   │
+├─────────────┼────────┼───────┤
+│ Application │ 16     │ ~12   │
+├─────────────┼────────┼───────┤
+│ Technology  │ 29     │ ~10   │
+├─────────────┼────────┼───────┤
+│ Total       │ 80     │ ~34   │
+└─────────────┴────────┴───────┘
+
+That's a true abstract — one row of components per layer, one service per sub-domain, the key infrastructure nodes, no steps or data stores.
